@@ -1,0 +1,44 @@
+﻿<Window x:Class="MVVMTEST.View.OpenEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMTEST.View"
+        mc:Ignorable="d"
+        Title="OpenEmployeeWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+            <TabItem Name="EmployeeTab" Grid.ColumnSpan="2">
+                <TabItem.Header>
+                    <TextBlock Text="Employees">
+                    </TextBlock>
+                </TabItem.Header>
+                <ListView x:Name ="ViewAllEmployees"
+                          DataContext="{Binding EmployeeViewModel, 
+                    Source={StaticResource ViewModelLocator}}"
+                          ItemsSource="{Binding AllEmployees}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name"
+                             DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="Surname"
+                            DisplayMemberBinding="{Binding Path=Surname}"/>
+                            <GridViewColumn Header="Patronymic"
+                                            DisplayMemberBinding="{Binding Path=Patronymic}"/>
+                            <GridViewColumn Header="Birthday"
+                                            DisplayMemberBinding="{Binding Path=Birthday}"/>
+                            <GridViewColumn Header="Gender"
+                                            DisplayMemberBinding="{Binding Path=Gender}"/>
+                            <GridViewColumn Header="Departments"
+                                            DisplayMemberBinding="{Binding Path=EmployeeDepartment.DepartmentName}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

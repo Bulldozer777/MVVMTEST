@@ -1,0 +1,35 @@
+﻿<Window x:Class="MVVMTEST.View.AddNewDepartmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMTEST.View"
+        mc:Ignorable="d"
+        Title="AddNewDepartmentWindow" Height="300" Width="300"
+        Name ="AddNewDepartmentwnd"
+        DataContext="{Binding DepartmentViewModel, Source={StaticResource ViewModelLocator}}">
+        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="200">
+            <TextBlock Text="DepartmentName"/>
+            <TextBox Name ="DepartmentName" Text="{Binding DepartmentName}"/>
+            <TextBlock Text="Director"/>
+            <ComboBox Name ="NameComboBox"
+                      ItemsSource="{Binding AllEmployees}" 
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding DepartmentDirector}"/>
+        </StackPanel>
+        <Button Grid.Row="1" Content="Add department"  
+                DataContext="{Binding DepartmentViewModel,
+            Source={StaticResource ViewModelLocator}}" 
+                Command ="{Binding AddNewDepartment}"
+                CommandParameter="{Binding ElementName=AddNewDepartmentwnd}"/>
+    </Grid>
+</Window>

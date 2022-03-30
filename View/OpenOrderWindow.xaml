@@ -1,0 +1,35 @@
+﻿<Window x:Class="MVVMTEST.View.OpenOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMTEST.View"
+        mc:Ignorable="d"
+        Title="OpenOrderWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+            <TabItem Name="OrderTab" Grid.ColumnSpan="2">
+                <TabItem.Header>
+                    <TextBlock Text="Orders">
+                    </TextBlock>
+                </TabItem.Header>
+                <ListView x:Name ="ViewAllOrders"
+                          DataContext="{Binding OrderViewModel, 
+                    Source={StaticResource ViewModelLocator}}"
+                          ItemsSource="{Binding AllOrders}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Number"/>
+                            <GridViewColumn Header="NameProduct"/>
+                            <GridViewColumn Header="Employees"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

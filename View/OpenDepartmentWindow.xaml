@@ -1,0 +1,36 @@
+﻿<Window x:Class="MVVMTEST.View.OpenDepartmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMTEST.View"
+        mc:Ignorable="d"
+        Title="OpenDepartmentWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+        <TabItem Name="DepartmentTab" Grid.ColumnSpan="2">
+                <TabItem.Header>
+                    <TextBlock Text="Departments">
+                    </TextBlock>
+                </TabItem.Header>
+                <ListView x:Name ="ViewAllDepartments" 
+                          DataContext="{Binding DepartmentViewModel, 
+                    Source={StaticResource ViewModelLocator}}"
+                          ItemsSource="{Binding AllDepartments}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="NameDepartment"
+                                            DisplayMemberBinding="{Binding DepartmentName}"/>
+                        <GridViewColumn Header="Director"  
+                                            DisplayMemberBinding="{Binding DepartmentDirector.Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
